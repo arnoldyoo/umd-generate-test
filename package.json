@@ -1,0 +1,33 @@
+{
+  "name": "ng2bc-umd-test2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rollup.config.js",
+  "scripts": {
+    "build": "rm -rf dist && tsc ",
+    "build_npm": "rm -rf dist && ngc -p tsconfig.json && rollup -c rollup.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/core": "^2.4.4",
+    "@angular/common": "^2.4.4",
+    "@angular/forms": "^2.4.4",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "^5.0.1",
+    "zone.js": "^0.7.2",
+    "moment": "*"
+  },
+  "devDependencies": {
+    "@angular/compiler": "^2.4.4",
+    "@angular/compiler-cli": "^2.4.4",
+    "es6-module-loader": "^0.17.10",
+    "rimraf": "^2.5.4",
+    "rollup": "^0.37.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "typescript": "~2.1.0",
+    "uglify-js": "^2.7.5"
+  }
+}

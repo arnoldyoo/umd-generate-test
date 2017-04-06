@@ -1,0 +1,1 @@
+{"version":3,"file":"custom.js","sourceRoot":"","sources":["../../../src/custom-components/custom.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,YAAY,EAAC,MAAM,iBAAiB,CAAC","sourcesContent":["export {CustomModule} from './custom.module';\ninterface DecoratorInvocation {\n  type: Function;\n  args?: any[];\n}\n"]}

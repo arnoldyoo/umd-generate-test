@@ -1,0 +1,1 @@
+{"version":3,"file":"micomponent.js","sourceRoot":"","sources":["../../src/micomponent.ts"],"names":[],"mappings":"AAAA,cAAc,uBAAuB,CAAC;AACtC,cAAc,4BAA4B,CAAC","sourcesContent":["export * from './ng2bs/ng2-bootstrap';\nexport * from './custom-components/custom';\n\ninterface DecoratorInvocation {\n  type: Function;\n  args?: any[];\n}\n"]}
