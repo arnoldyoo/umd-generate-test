@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-export declare class CustomModalComponent implements OnInit {
+export declare class CustomComponent implements OnInit {
     constructor();
     ngOnInit(): void;
 }

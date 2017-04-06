@@ -1,7 +1,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.miComponent = global.miComponent || {})));
+	(factory((global.CustomComponent = global.CustomComponent || {})));
 }(this, (function (exports) { 'use strict';
 
 /**
@@ -3387,6 +3387,9 @@ if (!exports.root) {
 }
 });
 
+var observable = createCommonjsModule(function (module, exports) {
+"use strict";
+
 function getSymbolObservable(context) {
     var $$observable;
     var Symbol = context.Symbol;
@@ -3404,13 +3407,15 @@ function getSymbolObservable(context) {
     }
     return $$observable;
 }
-var getSymbolObservable_1 = getSymbolObservable;
-var $$observable = getSymbolObservable(root.root);
+exports.getSymbolObservable = getSymbolObservable;
+exports.observable = getSymbolObservable(root.root);
+/**
+ * @deprecated use observable instead
+ */
+exports.$$observable = exports.observable;
+});
 
-var observable = {
-	getSymbolObservable: getSymbolObservable_1,
-	$$observable: $$observable
-};
+var observable_3 = observable.$$observable;
 
 /**
  * @license
@@ -3435,7 +3440,7 @@ function isPromise(obj) {
  * @return {?}
  */
 function isObservable(obj) {
-    return !!(obj && obj[$$observable]);
+    return !!(obj && obj[observable_3]);
 }
 
 /**
@@ -4014,13 +4019,17 @@ var Observer = {
 	empty: empty
 };
 
-var Symbol$1 = root.root.Symbol;
-var $$rxSubscriber = (typeof Symbol$1 === 'function' && typeof Symbol$1.for === 'function') ?
-    Symbol$1.for('rxSubscriber') : '@@rxSubscriber';
+var rxSubscriber = createCommonjsModule(function (module, exports) {
+"use strict";
 
-var rxSubscriber = {
-	$$rxSubscriber: $$rxSubscriber
-};
+var Symbol = root.root.Symbol;
+exports.rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
+    Symbol.for('rxSubscriber') : '@@rxSubscriber';
+/**
+ * @deprecated use rxSubscriber instead
+ */
+exports.$$rxSubscriber = exports.rxSubscriber;
+});
 
 var __extends$8 = (commonjsGlobal && commonjsGlobal.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -4083,7 +4092,7 @@ var Subscriber = (function (_super) {
                 break;
         }
     }
-    Subscriber.prototype[rxSubscriber.$$rxSubscriber] = function () { return this; };
+    Subscriber.prototype[rxSubscriber.rxSubscriber] = function () { return this; };
     /**
      * A static factory for a Subscriber, given a (potentially partial) definition
      * of an Observer.
@@ -4185,14 +4194,16 @@ var SafeSubscriber = (function (_super) {
             next = observerOrNext;
         }
         else if (observerOrNext) {
-            context = observerOrNext;
             next = observerOrNext.next;
             error = observerOrNext.error;
             complete = observerOrNext.complete;
-            if (isFunction_1.isFunction(context.unsubscribe)) {
-                this.add(context.unsubscribe.bind(context));
+            if (observerOrNext !== Observer.empty) {
+                context = Object.create(observerOrNext);
+                if (isFunction_1.isFunction(context.unsubscribe)) {
+                    this.add(context.unsubscribe.bind(context));
+                }
+                context.unsubscribe = this.unsubscribe.bind(this);
             }
-            context.unsubscribe = this.unsubscribe.bind(this);
         }
         this._context = context;
         this._next = next;
@@ -4290,8 +4301,8 @@ function toSubscriber(nextOrObserver, error, complete) {
         if (nextOrObserver instanceof Subscriber_1.Subscriber) {
             return nextOrObserver;
         }
-        if (nextOrObserver[rxSubscriber.$$rxSubscriber]) {
-            return nextOrObserver[rxSubscriber.$$rxSubscriber]();
+        if (nextOrObserver[rxSubscriber.rxSubscriber]) {
+            return nextOrObserver[rxSubscriber.rxSubscriber]();
         }
     }
     if (!nextOrObserver && !error && !complete) {
@@ -4386,7 +4397,10 @@ var Observable = (function () {
             throw new Error('no Promise impl found');
         }
         return new PromiseCtor(function (resolve, reject) {
-            var subscription = _this.subscribe(function (value) {
+            // Must be declared in a separate statement to avoid a RefernceError when
+            // accessing subscription below in the closure due to Temporal Dead Zone.
+            var subscription;
+            subscription = _this.subscribe(function (value) {
                 if (subscription) {
                     // if there is a subscription, then we can surmise
                     // the next handling is asynchronous. Any errors thrown
@@ -4420,7 +4434,7 @@ var Observable = (function () {
      * @method Symbol.observable
      * @return {Observable} this instance of the observable
      */
-    Observable.prototype[observable.$$observable] = function () {
+    Observable.prototype[observable.observable] = function () {
         return this;
     };
     // HACK: Since TypeScript inherits static properties too, we have to
@@ -4552,7 +4566,7 @@ var Subject = (function (_super) {
         this.hasError = false;
         this.thrownError = null;
     }
-    Subject.prototype[rxSubscriber.$$rxSubscriber] = function () {
+    Subject.prototype[rxSubscriber.rxSubscriber] = function () {
         return new SubjectSubscriber(this);
     };
     Subject.prototype.lift = function (operator) {
@@ -19497,19 +19511,19 @@ var __decorate$15 = (undefined && undefined.__decorate) || function (decorators,
 var __metadata$7 = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var CustomModalComponent = (function () {
-    function CustomModalComponent() {
+var CustomComponent = (function () {
+    function CustomComponent() {
     }
-    CustomModalComponent.prototype.ngOnInit = function () { };
-    return CustomModalComponent;
+    CustomComponent.prototype.ngOnInit = function () { };
+    return CustomComponent;
 }());
-CustomModalComponent = __decorate$15([
+CustomComponent = __decorate$15([
     Component({
-        selector: 'custom-modal',
-        template: "<h1>custom modal</h1>"
+        selector: 'custom',
+        template: "<h1>custom component</h1>"
     }),
     __metadata$7("design:paramtypes", [])
-], CustomModalComponent);
+], CustomComponent);
 
 var __decorate$14 = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -19525,8 +19539,8 @@ exports.CustomModule = (function () {
 exports.CustomModule = __decorate$14([
     NgModule({
         imports: [],
-        exports: [CustomModalComponent],
-        declarations: [CustomModalComponent],
+        exports: [CustomComponent],
+        declarations: [CustomComponent],
         providers: [],
     })
 ], exports.CustomModule);

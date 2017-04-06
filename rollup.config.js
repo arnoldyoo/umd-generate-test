@@ -4,9 +4,9 @@ import resolve from 'rollup-plugin-node-resolve';
 
 export default {
   entry: 'dist/index.js',
-  dest: 'dist/bundles/micomponent.umd.js',
+  dest: 'dist/bundles/component.umd.js',
   format: 'umd',
-  moduleName: 'miComponent',
+  moduleName: 'CustomComponent',
   globals: {
     '@angular/core': 'ng.core',
   },

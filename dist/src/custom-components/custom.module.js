@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { NgModule } from '@angular/core';
-import { CustomModalComponent } from './custom-modal.component';
+import { CustomComponent } from './custom.component';
 var CustomModule = (function () {
     function CustomModule() {
     }
@@ -14,8 +14,8 @@ var CustomModule = (function () {
 CustomModule = __decorate([
     NgModule({
         imports: [],
-        exports: [CustomModalComponent],
-        declarations: [CustomModalComponent],
+        exports: [CustomComponent],
+        declarations: [CustomComponent],
         providers: [],
     })
 ], CustomModule);

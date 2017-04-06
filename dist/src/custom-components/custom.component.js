@@ -8,18 +8,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-var CustomModalComponent = (function () {
-    function CustomModalComponent() {
+var CustomComponent = (function () {
+    function CustomComponent() {
     }
-    CustomModalComponent.prototype.ngOnInit = function () { };
-    return CustomModalComponent;
+    CustomComponent.prototype.ngOnInit = function () { };
+    return CustomComponent;
 }());
-CustomModalComponent = __decorate([
+CustomComponent = __decorate([
     Component({
-        selector: 'custom-modal',
-        template: "<h1>custom modal</h1>"
+        selector: 'custom',
+        template: "<h1>custom component</h1>"
     }),
     __metadata("design:paramtypes", [])
-], CustomModalComponent);
-export { CustomModalComponent };
-//# sourceMappingURL=custom-modal.component.js.map
+], CustomComponent);
+export { CustomComponent };
+//# sourceMappingURL=custom.component.js.map
