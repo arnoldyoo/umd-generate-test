@@ -1,1 +1,1 @@
-export * from './src/micomponent';
+export * from './src/component';
